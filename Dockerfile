@@ -5,7 +5,7 @@ ARG AWS_SECRET_ACCESS_KEY
 ARG AWS_REGION
 
 
-RUN apk add --update --wait 10 \
+RUN apk add --update \
     bash \
     python \
     py-pip \
@@ -21,8 +21,9 @@ SHELL ["/bin/bash", "-c"]
 
 LABEL author=thomas.foerster@gfk.com
 
-COPY script.sh /tmp/
+COPY script.sh /tmp/script.sh
+RUN chmod 777 /tmp/script.sh
 
-ENTRYPOINT /tmp/script.sh
+ENTRYPOINT ["/tmp/script.sh"]
 
 
